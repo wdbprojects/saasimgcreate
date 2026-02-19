@@ -1,0 +1,20 @@
+model ImageProject {
+  id                String   @id @default(cuid())
+  name              String?
+  prompt            String
+  negativePrompt    String?
+  imageUrl          String?
+  s3Key             String
+  width             Int
+  height            Int
+  numInferenceSteps Int
+  guidanceScale     Float
+  seed              BigInt
+  modelId           String
+  userId            String
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@map("image_project")
+}
